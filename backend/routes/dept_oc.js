@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
   })
 
   myConnection.query(
-    `insert into dept_oc(d_oc,d_name,atn) values('${data.d_oc}','${data.d_name}','${data.atn}')`,
+    `insert into dept_oc(d_oc,d_name,atn) values('${data.d_oc}','${data.d_name}',${data.atn})`,
     (err, results) => {
       if (err) {
         res.status(500).json(err.message)

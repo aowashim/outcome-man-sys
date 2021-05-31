@@ -11,6 +11,7 @@ app.use('/dept-oc', require('./routes/dept_oc'))
 app.use('/course', require('./routes/course'))
 app.use('/course-oc', require('./routes/course_oc'))
 app.use('/prog-oc', require('./routes/prog_oc'))
+app.use('/auth', require('./routes/auth'))
 
 const PORT = process.env.PORT || 5000
 

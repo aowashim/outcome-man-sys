@@ -4,8 +4,10 @@ const mysql = require('mysql')
 require('dotenv').config()
 
 // Get department outcomes
-router.get('/', (req, res) => {
-  const data = req.body
+router.get('/:id', (req, res) => {
+  //const data = req.body
+
+  console.log(req.params.id)
 
   const myConnection = mysql.createConnection(process.env.CON_URI)
 
@@ -19,7 +21,7 @@ router.get('/', (req, res) => {
   })
 
   myConnection.query(
-    `select * from dept_oc where d_name='${data.d_name}'`,
+    `select * from dept_oc where d_name='${req.params.id}'`,
     (err, results) => {
       if (err) {
         res.status(500).json(err.message)

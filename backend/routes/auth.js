@@ -3,8 +3,8 @@ const router = express.Router()
 const mysql = require('mysql')
 require('dotenv').config()
 
-// Get course outcomes
-router.get('/', (req, res) => {
+// Check user
+router.post('/', (req, res) => {
   const data = req.body
 
   const myConnection = mysql.createConnection(process.env.CON_URI)

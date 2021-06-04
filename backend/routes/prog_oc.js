@@ -67,7 +67,7 @@ router.delete('/', (req, res) => {
       console.log(err.message)
       return res.status(500).send('Server error...')
     } else {
-      console.log('Connected...')
+      console.log('Connected...', data)
     }
   })
 

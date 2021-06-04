@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Home from './screens/Home'
+import Depts from './screens/Depts'
+import Login from './screens/Login'
+import AppContext from './store/AppContext'
+import Courses from './screens/Courses'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loadData, setLoadData] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <AppContext.Provider
+        value={[isLoggedIn, setIsLoggedIn, loadData, setLoadData]}
+      >
+        <Switch>
+          <Route path='/' exact component={Login} />
+          <Route path='/home' exact component={Home} />
+          <Route path='/dept/:id' exact component={Depts} />
+          <Route path='/course/:id' exact component={Courses} />
+        </Switch>
+      </AppContext.Provider>
+    </Router>
+  )
 }
 
-export default App;
+export default App

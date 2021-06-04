@@ -4,8 +4,8 @@ const mysql = require('mysql')
 require('dotenv').config()
 
 // Get course outcomes
-router.get('/', (req, res) => {
-  const data = req.body
+router.get('/:id', (req, res) => {
+  //const data = req.body
 
   const myConnection = mysql.createConnection(process.env.CON_URI)
 
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   })
 
   myConnection.query(
-    `select * from course_oc where c_code='${data.c_code}'`,
+    `select * from course_oc where c_code='${req.params.id}'`,
     (err, results) => {
       if (err) {
         res.status(500).json(err.message)

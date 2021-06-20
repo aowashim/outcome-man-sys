@@ -101,7 +101,7 @@ router.put('/', (req, res) => {
   })
 
   myConnection.query(
-    `update prog_oc set p_oc='${data.p_oc}', atn=${data.atn} where id=${data.id}`,
+    `update prog_oc set p_oc='${data.oc}', atn=${data.atn} where id=${data.id}`,
     (err, results) => {
       if (err) {
         res.status(500).json(err.message)

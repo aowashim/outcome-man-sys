@@ -8,6 +8,8 @@ import DeptBar from '../components/NavBar/DeptBar'
 import { DEPT_OC } from '../constants/columns'
 import Delete from '../components/Delete'
 import Title from '../components/Title'
+import Add from '../components/deptOc/Add'
+import Update from '../components/Update'
 
 const Depts = props => {
   const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
@@ -37,10 +39,14 @@ const Depts = props => {
         {progData.current.length ? (
           <div>
             <MyTable data={progData.current[0]} columns={DEPT_OC} />
+            <Add path='/dept-oc' reload={reload} setReload={setReload} />
             <Delete path='/dept-oc' reload={reload} setReload={setReload} />
+            <Update path='/dept-oc' reload={reload} setReload={setReload} />
           </div>
         ) : (
-          <Loading />
+          <div className='w-screen h-screen flex justify-center items-center'>
+            <Loading size='4' />
+          </div>
         )}
       </div>
     </div>

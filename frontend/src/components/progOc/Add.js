@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
-import Loading from './Loading'
+import Loading from '../Loading'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { deleteData } from '../helpers/connectToServer'
+import { addData } from '../../helpers/progOcServer'
 
 toast.configure()
-const Delete = props => {
-  const [id, setId] = useState('')
+const Add = props => {
+  const [oc, setOc] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const notify = msg =>
     toast.error(msg, { position: toast.POSITION.TOP_CENTER })
 
-  const handleDelete = async e => {
+  const handleAdd = async e => {
     e.preventDefault()
 
     setIsLoading(true)
-    const data = await deleteData(`${props.path}`, id)
+    const data = await addData(`${props.path}`, oc)
 
     if (!data[1]) {
-      toast.success('Delete successfull', {
+      toast.success('Data added successfully...', {
         position: toast.POSITION.TOP_CENTER,
       })
       props.setReload(!props.reload)
-      setId('')
+      setOc('')
     } else {
       notify(data[0])
     }
@@ -32,15 +32,15 @@ const Delete = props => {
   }
 
   return (
-    <form onSubmit={handleDelete}>
+    <form onSubmit={handleAdd}>
       <div className='flex mt-5 bg-gray-400 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl'>
-        <label>Enter id : </label>
+        <label>Enter outcome : </label>
         <input
           type='text'
           required
           className='border rounded-lg border-green-400 ml-3'
-          value={id}
-          onChange={e => setId(e.target.value)}
+          value={oc}
+          onChange={e => setOc(e.target.value)}
         />
         {isLoading ? (
           <div className='ml-3'>
@@ -51,7 +51,7 @@ const Delete = props => {
             className='border-0 bg-red-200 rounded-lg pl-2 pr-2 pb-1 ml-4'
             type='submit'
           >
-            Delete
+            Add
           </button>
         )}
       </div>
@@ -59,4 +59,4 @@ const Delete = props => {
   )
 }
 
-export default Delete
+export default Add

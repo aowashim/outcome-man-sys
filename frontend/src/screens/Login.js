@@ -38,34 +38,38 @@ const Login = () => {
   }
 
   return (
-    <div className='ml-72 mt-40'>
-      <h2>Login</h2>
+    <div className='w-screen h-screen flex justify-center items-center'>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>User name : </label>
-          <input
-            type='text'
-            required
-            className='border rounded-lg border-green-400'
-            value={user}
-            onChange={e => setUser(e.target.value)}
-          />
-        </div>
-        <div className='mt-4'>
-          <label>Password : </label>
-          <input
-            type='password'
-            required
-            className='border rounded-lg border-green-400'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+        <div className='mb-4 ml-24'>Enter user details...</div>
+        <div className='bg-gray-100 p-6 rounded-md'>
+          <div>
+            <label>User name : </label>
+            <input
+              type='text'
+              required
+              className='border rounded-lg border-green-400 ml-1'
+              value={user}
+              onChange={e => setUser(e.target.value)}
+            />
+          </div>
+          <div className='mt-4'>
+            <label>Password : </label>
+            <input
+              type='password'
+              required
+              className='border rounded-lg border-green-400 ml-3'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
         </div>
         {isLoading ? (
-          <Loading />
+          <div className='ml-36 mt-5'>
+            <Loading size='1.7' />
+          </div>
         ) : (
           <button
-            className='border-0 bg-red-200 rounded-lg pl-2 pr-2 pb-1 mt-3'
+            className='border-0 bg-red-200 rounded-lg px-16 pb-1 mt-5 ml-20'
             type='submit'
           >
             Login

@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import AppContext from '../store/AppContext'
-import { getData } from '../helpers/connectToServer'
+import { getData, updateData } from '../helpers/connectToServer'
 import Loading from '../components/Loading'
 import NavBar from '../components/NavBar/NavBar'
 import MyTable from '../components/MyTable'
 import { PROG_OC } from '../constants/columns'
 import Delete from '../components/Delete'
 import Title from '../components/Title'
+import Add from '../components/progOc/Add'
+import Update from '../components/Update'
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
@@ -37,10 +39,14 @@ const Home = () => {
         {progData.current.length ? (
           <div>
             <MyTable data={progData.current[0]} columns={PROG_OC} />
+            <Add path='/prog-oc' reload={reload} setReload={setReload} />
             <Delete path='/prog-oc' reload={reload} setReload={setReload} />
+            <Update path='/prog-oc' reload={reload} setReload={setReload} />
           </div>
         ) : (
-          <Loading />
+          <div className='w-screen h-screen flex justify-center items-center'>
+            <Loading size='4' />
+          </div>
         )}
       </div>
     </div>

@@ -1,11 +1,13 @@
 import React from 'react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-const Loading = () => {
+const Loading = props => {
   return (
-    <div className='mt-4 ml-4'>
-      <AiOutlineLoading3Quarters color='red' size='1.5em' />
-    </div>
+    <AiOutlineLoading3Quarters
+      className='animate-spin'
+      color='#1af00e'
+      size={`${props.size}em`}
+    />
   )
 }
 

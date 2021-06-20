@@ -56,3 +56,19 @@ export const deleteData = async (path, id) => {
     return [error.message, isError]
   }
 }
+
+export const updateData = async (path, id, oc, atn) => {
+  let isError = false
+
+  try {
+    const response = await axios.put(`${uri}${path}`, {
+      id,
+      oc,
+      atn,
+    })
+    return [response.data[0], isError]
+  } catch (error) {
+    isError = true
+    return [error.message, isError]
+  }
+}

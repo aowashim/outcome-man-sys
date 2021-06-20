@@ -8,6 +8,8 @@ import CourseBar from '../components/NavBar/CourseBar'
 import { COURSE_OC } from '../constants/columns'
 import Delete from '../components/Delete'
 import Title from '../components/Title'
+import Add from '../components/courseOc/Add'
+import Update from '../components/Update'
 
 const Courses = props => {
   const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
@@ -37,10 +39,14 @@ const Courses = props => {
         {progData.current.length ? (
           <div>
             <MyTable data={progData.current[0]} columns={COURSE_OC} />
+            <Add path='/course-oc' reload={reload} setReload={setReload} />
             <Delete path='/course-oc' reload={reload} setReload={setReload} />
+            <Update path='/course-oc' reload={reload} setReload={setReload} />
           </div>
         ) : (
-          <Loading />
+          <div className='w-screen h-screen flex justify-center items-center'>
+            <Loading size='4' />
+          </div>
         )}
       </div>
     </div>

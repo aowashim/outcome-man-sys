@@ -7,14 +7,11 @@ import AppContext from './store/AppContext'
 import Courses from './screens/Courses'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [loadData, setLoadData] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState('')
 
   return (
     <Router>
-      <AppContext.Provider
-        value={[isLoggedIn, setIsLoggedIn, loadData, setLoadData]}
-      >
+      <AppContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
         <Switch>
           <Route path='/' exact component={Login} />
           <Route path='/home' exact component={Home} />

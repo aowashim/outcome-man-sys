@@ -33,7 +33,7 @@ const Delete = props => {
 
   return (
     <form onSubmit={handleDelete}>
-      <div className='flex mt-5 bg-gray-400 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl'>
+      <div className='flex mt-5 bg-gray-100 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl'>
         <label>Enter id : </label>
         <input
           type='text'

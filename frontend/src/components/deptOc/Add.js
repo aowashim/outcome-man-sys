@@ -35,7 +35,7 @@ const Add = props => {
 
   return (
     <form onSubmit={handleAdd}>
-      <div className='flex mt-5 bg-gray-400 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl'>
+      <div className='flex mt-12 bg-gray-100 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl'>
         <div>
           <div>
             <label>Enter outcome : </label>

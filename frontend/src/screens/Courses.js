@@ -12,8 +12,7 @@ import Add from '../components/courseOc/Add'
 import Update from '../components/Update'
 
 const Courses = props => {
-  const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
-    useContext(AppContext)
+  const [isLoggedIn, setIsLoggedIn] = useContext(AppContext)
   const progData = useRef([])
   const [load, setLoad] = useState(false)
   const [reload, setReload] = useState(false)
@@ -24,12 +23,7 @@ const Courses = props => {
       setLoad(!load)
     }
     getProgData()
-    console.log('reloaded')
   }, [reload])
-
-  const handleLogout = () => {
-    setIsLoggedIn(false)
-  }
 
   return isLoggedIn ? (
     <div>
@@ -39,9 +33,21 @@ const Courses = props => {
         {progData.current.length ? (
           <div>
             <MyTable data={progData.current[0]} columns={COURSE_OC} />
-            <Add path='/course-oc' reload={reload} setReload={setReload} />
-            <Delete path='/course-oc' reload={reload} setReload={setReload} />
-            <Update path='/course-oc' reload={reload} setReload={setReload} />
+            {isLoggedIn == 'admin' && (
+              <>
+                <Add path='/course-oc' reload={reload} setReload={setReload} />
+                <Delete
+                  path='/course-oc'
+                  reload={reload}
+                  setReload={setReload}
+                />
+                <Update
+                  path='/course-oc'
+                  reload={reload}
+                  setReload={setReload}
+                />
+              </>
+            )}
           </div>
         ) : (
           <div className='w-screen h-screen flex justify-center items-center'>

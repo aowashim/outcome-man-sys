@@ -3,8 +3,8 @@ const router = express.Router()
 const mysql = require('mysql')
 require('dotenv').config()
 
-// Get all courses
-router.get('/', (req, res) => {
+// Get courses by depts
+router.get('/:id', (req, res) => {
   const myConnection = mysql.createConnection(process.env.CON_URI)
 
   myConnection.connect(err => {
@@ -16,13 +16,16 @@ router.get('/', (req, res) => {
     }
   })
 
-  myConnection.query('select * from course', (err, results) => {
-    if (err) {
-      res.status(500).json(err.message)
-    } else {
-      res.status(200).json(results)
+  myConnection.query(
+    `select * from course where d_name='${req.params.id}'`,
+    (err, results) => {
+      if (err) {
+        res.status(500).json(err.message)
+      } else {
+        res.status(200).json(results)
+      }
     }
-  })
+  )
 
   myConnection.end()
 })

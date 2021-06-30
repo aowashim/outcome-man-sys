@@ -17,7 +17,7 @@ export default function NavBar(props) {
         </ul>
         <ul className='flex justify-between px-5'>
           <li className='hover:text-red-500'>
-            <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+            <button onClick={() => setIsLoggedIn('')}>Logout</button>
           </li>
         </ul>
       </nav>

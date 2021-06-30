@@ -37,7 +37,7 @@ const Update = props => {
 
   return (
     <form onSubmit={handleUpdate}>
-      <div className='flex mt-5 bg-gray-400 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl mb-3'>
+      <div className='flex mt-5 bg-gray-100 p-3 justify-center mx-5 lg:mx-36 md:mx-20 rounded-3xl mb-3'>
         <div>
           <div>
             <label>Enter id : </label>

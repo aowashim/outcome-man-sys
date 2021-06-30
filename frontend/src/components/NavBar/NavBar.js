@@ -8,8 +8,7 @@ export default function NavBar(props) {
   const [showDepts, setShowDepts] = useState(false)
   const [loading, setLoading] = useState(false)
   const depts = useRef([])
-  const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
-    useContext(AppContext)
+  const [isLoggedIn, setIsLoggedIn] = useContext(AppContext)
 
   //   const history = useHistory()
 
@@ -28,8 +27,8 @@ export default function NavBar(props) {
       <nav className='py-5 fixed top-0 inset-x-0 bg-gray-800 text-white flex justify-between'>
         <ul className='flex justify-between px-5'>
           {depts.current[0].map(data => (
-            <li className='mr-5 hover:text-red-500'>
-              <NavLink key={data.id} exact to={`/dept/${data.d_name}`}>
+            <li key={data.id} className='mr-5 hover:text-red-500'>
+              <NavLink exact to={`/dept/${data.d_name}`}>
                 {data.d_name}
               </NavLink>
             </li>
@@ -58,7 +57,7 @@ export default function NavBar(props) {
         </ul>
         <ul className='flex justify-between px-5'>
           <li className='hover:text-red-500'>
-            <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+            <button onClick={() => setIsLoggedIn('')}>Logout</button>
           </li>
         </ul>
       </nav>

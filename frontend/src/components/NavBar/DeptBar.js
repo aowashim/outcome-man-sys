@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
-import { deleteData, getData } from '../../helpers/connectToServer'
+import { deleteData, getDataById } from '../../helpers/connectToServer'
 import AppContext from '../../store/AppContext'
 import Loading from '../Loading'
 
@@ -8,15 +8,14 @@ export default function NavBar(props) {
   const [showCourse, setShowCourse] = useState(false)
   const [loading, setLoading] = useState(false)
   const course = useRef([])
-  const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
-    useContext(AppContext)
+  const [isLoggedIn, setIsLoggedIn] = useContext(AppContext)
 
   //   const history = useHistory()
 
   const handleShowCourse = () => {
     setLoading(true)
     const getcourse = async () => {
-      course.current = await getData('/course')
+      course.current = await getDataById('/course', props.id)
       setLoading(false)
       setShowCourse(true)
     }
@@ -58,7 +57,7 @@ export default function NavBar(props) {
         </ul>
         <ul className='flex justify-between px-5'>
           <li className='hover:text-red-500'>
-            <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+            <button onClick={() => setIsLoggedIn('')}>Logout</button>
           </li>
         </ul>
       </nav>

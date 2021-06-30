@@ -25,7 +25,7 @@ const Login = () => {
 
     if (!data[1]) {
       if (data[0]) {
-        setIsLoggedIn(true)
+        setIsLoggedIn(data[0].u_type)
         history.replace('/home')
       } else {
         notify('User not found. Incorrect user id or password.')

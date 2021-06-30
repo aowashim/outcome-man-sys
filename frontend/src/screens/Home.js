@@ -12,8 +12,7 @@ import Add from '../components/progOc/Add'
 import Update from '../components/Update'
 
 const Home = () => {
-  const [isLoggedIn, setIsLoggedIn, loadData, setLoadData] =
-    useContext(AppContext)
+  const [isLoggedIn, setIsLoggedIn] = useContext(AppContext)
   const progData = useRef([])
   const [load, setLoad] = useState(false)
   const [reload, setReload] = useState(false)
@@ -24,12 +23,7 @@ const Home = () => {
       setLoad(!load)
     }
     getProgData()
-    console.log('reloaded')
   }, [reload])
-
-  const handleLogout = () => {
-    setIsLoggedIn(false)
-  }
 
   return isLoggedIn ? (
     <div>
@@ -39,9 +33,13 @@ const Home = () => {
         {progData.current.length ? (
           <div>
             <MyTable data={progData.current[0]} columns={PROG_OC} />
-            <Add path='/prog-oc' reload={reload} setReload={setReload} />
-            <Delete path='/prog-oc' reload={reload} setReload={setReload} />
-            <Update path='/prog-oc' reload={reload} setReload={setReload} />
+            {isLoggedIn == 'admin' && (
+              <>
+                <Add path='/prog-oc' reload={reload} setReload={setReload} />
+                <Delete path='/prog-oc' reload={reload} setReload={setReload} />
+                <Update path='/prog-oc' reload={reload} setReload={setReload} />
+              </>
+            )}
           </div>
         ) : (
           <div className='w-screen h-screen flex justify-center items-center'>
